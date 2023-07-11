@@ -13,12 +13,12 @@ import { ConsumerModule } from './consumer/consumer.module';
     ConfigModule.forRoot({
       envFilePath: '.env',
       isGlobal: true,
-
     }),
     MongooseModule.forRoot(process.env.DB_URI),
-    MarketModule, 
-    ProductModule, 
-    AdModule, ConsumerModule
+    MarketModule,
+    ProductModule,
+    AdModule,
+    ConsumerModule,
   ],
   controllers: [AppController],
   providers: [AppService],

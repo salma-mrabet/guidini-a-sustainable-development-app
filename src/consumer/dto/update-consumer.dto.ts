@@ -1,22 +1,24 @@
-import { IsEmail,IsString, MaxLength,IsNotEmpty, IsNumber  } from "class-validator";
-
+import {
+  IsEmail,
+  IsString,
+  MaxLength,
+  IsNotEmpty,
+  IsNumber,
+} from 'class-validator';
 
 export class UpdateConsumerDto {
+  @IsString()
+  firstname: string;
 
-    @IsString()
-    firstname: string;
+  @IsString()
+  lastname: string;
 
-    @IsString()
-    lastname: string;
+  @IsEmail()
+  email: string;
 
-    @IsEmail()
-    email: string;
+  @IsString()
+  password: string;
 
-    @IsString()
-    password: string;
-
-    @IsNumber()
-    points:number;
-
-
+  @IsNumber()
+  points: number;
 }

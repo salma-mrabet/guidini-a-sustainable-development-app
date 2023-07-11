@@ -5,8 +5,10 @@ import { MarketSchema } from '../schemas/market.schema';
 import { MongooseModule } from '@nestjs/mongoose';
 
 @Module({
-  imports: [MongooseModule.forFeature([{ name: 'Market', schema: MarketSchema}])],
+  imports: [
+    MongooseModule.forFeature([{ name: 'Market', schema: MarketSchema }]),
+  ],
   controllers: [MarketController],
-  providers: [MarketService]
+  providers: [MarketService],
 })
 export class MarketModule {}
