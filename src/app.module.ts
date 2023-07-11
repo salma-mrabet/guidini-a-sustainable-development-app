@@ -6,6 +6,7 @@ import { ProductModule } from './product/product.module';
 import { AdModule } from './ad/ad.module';
 import { ConfigModule } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
+import { ConsumerModule } from './consumer/consumer.module';
 
 @Module({
   imports: [
@@ -17,7 +18,7 @@ import { MongooseModule } from '@nestjs/mongoose';
     MongooseModule.forRoot(process.env.DB_URI),
     MarketModule, 
     ProductModule, 
-    AdModule
+    AdModule, ConsumerModule
   ],
   controllers: [AppController],
   providers: [AppService],
