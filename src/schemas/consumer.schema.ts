@@ -1,4 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { ApiProperty } from '@nestjs/swagger';
 
 @Schema({
   timestamps: true,
@@ -6,6 +7,9 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 export class Consumer {
   @Prop({
     required: true,
+  })
+  @ApiProperty({
+    description: 'The first name of the consumer',
   })
   firstname: string;
 

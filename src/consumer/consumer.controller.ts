@@ -11,12 +11,16 @@ import { ConsumerService } from './consumer.service';
 import { Consumer } from '../schemas/consumer.schema';
 import { CreateConsumerDto } from './dto/create-consumer.dto';
 import { UpdateConsumerDto } from './dto/update-consumer.dto';
+import { ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
 
 @Controller('consumer')
+@ApiTags('consumer')
 export class ConsumerController {
   constructor(private consumerService: ConsumerService) {}
 
   @Get()
+  @ApiOperation({ summary: 'Get All Consumers' })
+  @ApiOkResponse({type: Consumer, isArray:true})
   async getAllConsumers(): Promise<Consumer[]> {
     return await this.consumerService.findAll();
   }
