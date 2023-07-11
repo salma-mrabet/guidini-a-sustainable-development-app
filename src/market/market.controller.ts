@@ -1,6 +1,6 @@
-import { Body,Controller,Get, Post, Param, Put } from '@nestjs/common';
+import { Body,Controller,Get, Post, Param, Put, Delete } from '@nestjs/common';
 import { MarketService } from './market.service';
-import { Market } from './schemas/market.schema';
+import { Market } from '../schemas/market.schema';
 import { CreateMarketDto } from './dto/create-market.dto';
 import { UpdateMarketDto } from './dto/update-dto';
 
@@ -42,6 +42,16 @@ export class MarketController {
     ):Promise<Market> {
         return this.marketService.updateById(id, market);
     }
+
+    @Delete (':id')
+    async deleteMarket(
+      @Param('id')
+      id: string ,
+      market:Market
+    ) : Promise <Market> {
+      return this.marketService.deleteById(id,market);
+    }
+  
 
 
 

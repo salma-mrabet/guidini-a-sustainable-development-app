@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { MarketController } from './market.controller';
 import { MarketService } from './market.service';
-import { MarketSchema } from './schemas/market.schema';
+import { MarketSchema } from '../schemas/market.schema';
 import { MongooseModule } from '@nestjs/mongoose';
 
 @Module({

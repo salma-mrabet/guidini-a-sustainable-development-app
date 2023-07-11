@@ -1,7 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import * as mongoose from 'mongoose';
-import { Market } from './schemas/market.schema';
+import { Market } from '../schemas/market.schema';
 
 @Injectable()
 export class MarketService {
@@ -35,6 +35,10 @@ export class MarketService {
             new:true,
             runValidators:true,
         })
+    }
+
+    async deleteById (id: string, market: Market) : Promise<Market> {
+        return await this.marketModel.findByIdAndDelete(id,market)
     }
 
 

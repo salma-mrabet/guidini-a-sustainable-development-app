@@ -1,4 +1,4 @@
-import { IsEmail,IsString } from "class-validator";
+import { IsEmail,IsNumber,IsString , MaxLength} from "class-validator";
 
 
 export class UpdateMarketDto {
@@ -11,5 +11,17 @@ export class UpdateMarketDto {
 
     @IsString()
     password: string;
+
+    @IsNumber()
+    phone:number;
+
+    @IsString()
+    description:string;
+
+    @IsString()
+    area:string;
+
+    @IsString()
+    logo:string;
 
 }
