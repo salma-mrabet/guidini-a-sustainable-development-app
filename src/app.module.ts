@@ -7,6 +7,7 @@ import { AdModule } from './ad/ad.module';
 import { ConfigModule } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ConsumerModule } from './consumer/consumer.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { ConsumerModule } from './consumer/consumer.module';
     ProductModule,
     AdModule,
     ConsumerModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],
