@@ -48,6 +48,7 @@ export class AuthService {
         const token = this.jwtService.sign({id :user._id})
 
         return { token}
+        
     }
 
 }
