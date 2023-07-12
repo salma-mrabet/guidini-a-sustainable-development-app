@@ -6,18 +6,21 @@ import { ProductModule } from './product/product.module';
 import { AdModule } from './ad/ad.module';
 import { ConfigModule } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
+import { ConsumerModule } from './consumer/consumer.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       envFilePath: '.env',
       isGlobal: true,
-
     }),
     MongooseModule.forRoot(process.env.DB_URI),
-    MarketModule, 
-    ProductModule, 
-    AdModule
+    MarketModule,
+    ProductModule,
+    AdModule,
+    ConsumerModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],

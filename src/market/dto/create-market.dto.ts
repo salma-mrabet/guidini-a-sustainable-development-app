@@ -1,15 +1,33 @@
-import { IsEmail,IsString } from "class-validator";
-
+import {
+  IsEmail,
+  IsString,
+  MaxLength,
+  IsNotEmpty,
+  IsNumber,
+} from 'class-validator';
 
 export class CreateMarketDto {
+  @IsString()
+  @IsNotEmpty()
+  market: string;
 
-    @IsString()
-    market: string;
+  @IsEmail()
+  @IsNotEmpty()
+  email: string;
 
-    @IsEmail()
-    email: string;
+  @IsString()
+  @IsNotEmpty()
+  password: string;
 
-    @IsString()
-    password: string;
+  @IsNumber()
+  phone: number;
 
+  @IsString()
+  description: string;
+
+  @IsString()
+  area: string;
+
+  @IsString()
+  logo = 'default_logo.png';
 }

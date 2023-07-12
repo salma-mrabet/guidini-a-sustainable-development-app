@@ -1,15 +1,24 @@
-import { IsEmail,IsString } from "class-validator";
-
+import { IsEmail, IsNumber, IsString, MaxLength } from 'class-validator';
 
 export class UpdateMarketDto {
+  @IsString()
+  market: string;
 
-    @IsString()
-    market: string;
+  @IsEmail()
+  email: string;
 
-    @IsEmail()
-    email: string;
+  @IsString()
+  password: string;
 
-    @IsString()
-    password: string;
+  @IsNumber()
+  phone: number;
 
+  @IsString()
+  description: string;
+
+  @IsString()
+  area: string;
+
+  @IsString()
+  logo: string;
 }
