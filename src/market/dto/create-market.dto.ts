@@ -10,7 +10,7 @@ import {
 export class CreateMarketDto {
   @ApiProperty({
     description: 'The company name',
-    required:true
+    required: true,
   })
   @IsString()
   @IsNotEmpty()
@@ -18,7 +18,7 @@ export class CreateMarketDto {
 
   @ApiProperty({
     description: 'email ',
-    required:true
+    required: true,
   })
   @IsEmail()
   @IsNotEmpty()
@@ -26,7 +26,7 @@ export class CreateMarketDto {
 
   @ApiProperty({
     description: 'Password',
-    required:true
+    required: true,
   })
   @IsString()
   @IsNotEmpty()
@@ -37,13 +37,13 @@ export class CreateMarketDto {
   })
   @IsNumber()
   phone: number;
-  
+
   @ApiProperty({
     description: 'Description of the company',
   })
   @IsString()
   description: string;
-  
+
   @ApiProperty({
     description: 'Area',
   })

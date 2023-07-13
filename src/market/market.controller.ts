@@ -6,11 +6,13 @@ import {
   Param,
   Put,
   Delete,
+  UseGuards,
 } from '@nestjs/common';
 import { MarketService } from './market.service';
 import { Market } from '../schemas/market.schema';
 import { CreateMarketDto } from './dto/create-market.dto';
 import { UpdateMarketDto } from './dto/update-dto';
+import { AuthGuard } from '@nestjs/passport';
 
 @Controller('market')
 export class MarketController {
@@ -22,6 +24,7 @@ export class MarketController {
   }
 
   @Post()
+ 
   async createMarket(
     @Body()
     market: CreateMarketDto,
@@ -30,6 +33,7 @@ export class MarketController {
   }
 
   @Get(':id')
+
   async getMarket(
     @Param('id')
     id: string,

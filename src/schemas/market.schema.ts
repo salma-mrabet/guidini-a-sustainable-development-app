@@ -6,6 +6,7 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 export class Market {
   @Prop({
     required: true,
+    unique: true,
   })
   market: string;
 
