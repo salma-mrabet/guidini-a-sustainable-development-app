@@ -33,6 +33,7 @@ export class Consumer {
     default: 0,
   })
   points: number;
+  
 }
 
 export const ConsumerSchema = SchemaFactory.createForClass(Consumer);

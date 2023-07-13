@@ -3,6 +3,8 @@ import { AuthService } from './auth.service';
 import { SignUpDto } from './dto/signup.dto';
 import { Body, Post } from '@nestjs/common';
 import { LoginDto } from './dto/login.dto';
+import { Roles } from 'src/decorators/roles.decorator';
+import { Role } from 'src/enums/role.enum';
 
 @Controller('auth')
 export class AuthController {
