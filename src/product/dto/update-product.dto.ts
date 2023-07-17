@@ -1,13 +1,10 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsEmail, IsNumber, IsOptional, IsString, MaxLength } from 'class-validator';
+import { IsEmail, IsEmpty, IsNumber, IsOptional, IsString, MaxLength } from 'class-validator';
+
+
 
 export class UpdateProductDto {
-  @ApiProperty({
-    description: 'id of the product',
-  })
-  @IsString()
-  id: string;
-
+ 
   @ApiProperty({
     description: 'product name',
   })
@@ -31,4 +28,6 @@ export class UpdateProductDto {
   @IsString()
   @IsOptional()
   quantityRecommended: string;
+
+
 }

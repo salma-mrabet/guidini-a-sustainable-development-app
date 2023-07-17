@@ -4,17 +4,13 @@ import {
   IsString,
   IsNotEmpty,
   IsOptional,
+  IsEmpty,
 } from 'class-validator';
+
 
 export class CreateProductDto {
     
-    @ApiProperty({
-        description: 'id of the product',
-        required: true,
-      })
-  @IsString()
-  @IsNotEmpty()
-  id: string;
+
 
   @IsNotEmpty()
   @ApiProperty({
@@ -43,5 +39,7 @@ export class CreateProductDto {
   @IsString()
   @IsOptional()
   quantityRecommended: string;
+
+
 
 }

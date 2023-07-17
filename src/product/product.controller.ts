@@ -10,13 +10,15 @@ import {
     UseGuards,
   } from '@nestjs/common';
 
-  import { AuthGuard } from '@nestjs/passport';
 import { ProductService } from './product.service';
 import { Product } from './product.schema';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
+import { ApiTags } from '@nestjs/swagger';
+
 
 @Controller('product')
+@ApiTags('product')
 export class ProductController {
     constructor(private productService: ProductService) {}
 
@@ -30,7 +32,9 @@ export class ProductController {
   async createProduct(
     @Body()
     product: CreateProductDto,
+
   ): Promise<Product> {
+  
     return this.productService.create(product);
   }
 

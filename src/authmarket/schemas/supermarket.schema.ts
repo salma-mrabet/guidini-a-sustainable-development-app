@@ -3,21 +3,14 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 @Schema({
   timestamps: true,
 })
-export class Market {
-  @Prop({
-    required: true,
-  })
-  market: string;
+export class SuperMarket  {
+  @Prop()
+  marketname: string;
 
-  @Prop({
-    required: true,
-    unique: true,
-  })
+  @Prop({ unique: [true, 'Duplicate email entered'] })
   email: string;
 
-  @Prop({
-    required: true,
-  })
+  @Prop()
   password: string;
 
   @Prop()
@@ -35,4 +28,4 @@ export class Market {
   logo: string;
 }
 
-export const MarketSchema = SchemaFactory.createForClass(Market);
+export const SuperMarketSchema = SchemaFactory.createForClass(SuperMarket);

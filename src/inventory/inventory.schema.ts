@@ -1,12 +1,16 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { ApiProperty } from '@nestjs/swagger';
 import mongoose from 'mongoose';
+import { User } from 'src/auth/schemas/user.schema';
 
 
 @Schema({
   timestamps: true,
 })
-export class Product {
+
+
+
+export class Inventory {
 
   @Prop({
     required: true,
@@ -21,15 +25,18 @@ export class Product {
   brand: string;
 
   @Prop()
-  quantityInStock: string;
+  quantity: string;
 
-  @Prop()
-  quantityRecommended: string;
 
-  // @Prop({ type: mongoose.Schema.Types.ObjectId, ref:'User'})
-  // user: User ;
+  @Prop({ type: mongoose.Schema.Types.ObjectId, ref:'User'})
+  user: User ;
+
+
+
+//   @Prop()
+//   recommendation:string;
 
   
 }
 
-export const ProductSchema = SchemaFactory.createForClass(Product);
+export const InventorySchema = SchemaFactory.createForClass(Inventory);

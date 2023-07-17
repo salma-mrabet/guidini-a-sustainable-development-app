@@ -8,6 +8,8 @@ import { ConfigModule } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ConsumerModule } from './consumer/consumer.module';
 import { AuthModule } from './auth/auth.module';
+import { AuthMarketModule } from './authmarket/authmarket.module';
+import { InventoryModule } from './inventory/inventory.module';
 
 @Module({
   imports: [
@@ -21,6 +23,8 @@ import { AuthModule } from './auth/auth.module';
     AdModule,
     ConsumerModule,
     AuthModule,
+    AuthMarketModule,
+    InventoryModule,
   ],
   controllers: [AppController],
   providers: [AppService],

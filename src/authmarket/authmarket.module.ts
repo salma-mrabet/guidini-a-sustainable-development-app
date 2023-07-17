@@ -1,12 +1,11 @@
 import { Module } from '@nestjs/common';
-import { AuthController } from './auth.controller';
-import { AuthService } from './auth.service';
 import { PassportModule } from '@nestjs/passport';
-import { UserSchema } from './schemas/user.schema';
 import { MongooseModule } from '@nestjs/mongoose';
 import { JwtModule } from '@nestjs/jwt';
 import { ConfigService } from '@nestjs/config';
-import { config } from 'process';
+import { AuthMarketController } from './authmarket.controller';
+import { AuthMarketService } from './auth-market.service';
+import { SuperMarketSchema } from './schemas/supermarket.schema';
 @Module({
   imports: [
     PassportModule.register({ defaultStrategy: 'jwt' }),
@@ -19,9 +18,9 @@ import { config } from 'process';
         };
       },
     }),
-    MongooseModule.forFeature([{ name: 'User', schema: UserSchema }]),
+    MongooseModule.forFeature([{ name: 'SuperMarket', schema: SuperMarketSchema }]),
   ],
-  controllers: [AuthController],
-  providers: [AuthService],
+  controllers: [AuthMarketController],
+  providers: [AuthMarketService],
 })
-export class AuthModule {}
+export class AuthMarketModule {}
