@@ -1,30 +1,30 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
-import { User } from './schemas/user.schema';
+import { SuperMarket } from './schemas/supermarket.schema';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import * as bcrypt from 'bcryptjs'; 
 import { JwtService } from '@nestjs/jwt';
 import { LoginDto } from './dto/login.dto';
 @Injectable()
-export class AuthService {
+export class AuthMarketService {
     constructor(
-        @InjectModel(User.name)
-        private userModel: Model<User>,
+        @InjectModel(SuperMarket.name)
+        private marketModel: Model<SuperMarket>,
         private jwtService : JwtService
     ) {}
 
     async signUp(signUpDto): Promise<{ token : string }>{
-        const { name, email, password } = signUpDto
+        const {marketname, email, password } = signUpDto
 
         const hashedPassword = await bcrypt.hash(password , 10)
 
-        const user = await this.userModel.create({
-            name,
+        const market = await this.marketModel.create({
+            marketname,
             email,
             password: hashedPassword
         })
 
-        const token = this.jwtService.sign({id :user._id})
+        const token = this.jwtService.sign({id :market._id})
 
         return { token}
     }
@@ -32,20 +32,20 @@ export class AuthService {
     async login (loginDto: LoginDto): Promise<{ token: string}> {
         const { email, password } = loginDto;
 
-        const user = await this.userModel.findOne({ email })
+        const market = await this.marketModel.findOne({ email })
 
-        if(!user) {
+        if(!market) {
             throw new UnauthorizedException('Invalid email or password')
         }
 
-        const isPasswordMatched = await bcrypt.compare(password, user.password)
+        const isPasswordMatched = await bcrypt.compare(password, market.password)
         
         
         if(!isPasswordMatched) {
             throw new UnauthorizedException('Invalid email or password')
         }
 
-        const token = this.jwtService.sign({id :user._id})
+        const token = this.jwtService.sign({id :market._id})
 
         return { token}
     }
