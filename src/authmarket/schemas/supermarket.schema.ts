@@ -26,6 +26,9 @@ export class SuperMarket  {
     default: 'default_logo.png',
   })
   logo: string;
+
+  @Prop()
+  address:string;
 }
 
 export const SuperMarketSchema = SchemaFactory.createForClass(SuperMarket);

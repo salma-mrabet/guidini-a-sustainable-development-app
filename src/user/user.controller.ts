@@ -14,7 +14,6 @@ export class UserController {
       return this.userService.findAll();
     }
   
-
     @Get(':id')
     async getUser(
       @Param('id')
