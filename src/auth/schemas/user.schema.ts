@@ -9,7 +9,7 @@ export class User  {
   @Prop()
   name: string;
 
-  @Prop({ unique: [true, 'Duplicate email entered'] })
+  @Prop()
   email: string;
 
   @Prop()
@@ -20,6 +20,11 @@ export class User  {
 
   @Prop()
   scannedTicket:string;
+
+  @Prop({
+    default: 0,
+  })
+  points: number;
 
 }
 

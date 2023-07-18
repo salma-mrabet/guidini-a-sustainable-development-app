@@ -35,6 +35,8 @@ export class Inventory {
   @Prop({  ref:'User'})
   user: string ;
 
+  
+
 }
 
 export const InventorySchema = SchemaFactory.createForClass(Inventory);
