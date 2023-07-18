@@ -1,26 +1,27 @@
 import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import * as mongoose from 'mongoose';
-import { Consumer } from '../schemas/consumer.schema';
+// import { Consumer } from '../schemas/consumer.schema';
+import { User } from 'src/authConsumer/schemas/user.schema';
 
 @Injectable()
 export class ConsumerService {
   constructor(
-    @InjectModel(Consumer.name)
-    private consumerModel: mongoose.Model<Consumer>,
+    @InjectModel(User.name)
+    private consumerModel: mongoose.Model<User>,
   ) {}
 
-  async findAll(): Promise<Consumer[]> {
+  async findAll(): Promise<User[]> {
     const consumers = await this.consumerModel.find();
     return consumers;
   }
 
-  async create(consumer: Consumer): Promise<Consumer> {
+  async create(consumer: User): Promise<User> {
     const res = await this.consumerModel.create(consumer);
     return res;
   }
 
-  async findById(id: string): Promise<Consumer> {
+  async findById(id: string): Promise<User> {
     const consumer = await this.consumerModel.findById(id);
 
     if (!consumer) {
@@ -29,14 +30,14 @@ export class ConsumerService {
     return consumer;
   }
 
-  async updateById(id: string, consumer: Consumer): Promise<Consumer> {
+  async updateById(id: string, consumer: User): Promise<User> {
     return await this.consumerModel.findByIdAndUpdate(id, consumer, {
       new: true,
       runValidators: true,
     });
   }
 
-  async deleteById(id: string, consumer: Consumer): Promise<Consumer> {
+  async deleteById(id: string, consumer: User): Promise<User> {
     return await this.consumerModel.findByIdAndDelete(id, consumer);
   }
 }

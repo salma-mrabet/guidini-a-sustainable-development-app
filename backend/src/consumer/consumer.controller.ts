@@ -8,7 +8,7 @@ import {
   Delete,
 } from '@nestjs/common';
 import { ConsumerService } from './consumer.service';
-import { Consumer } from '../schemas/consumer.schema';
+import { User } from '../authConsumer/schemas/user.schema';
 import { CreateConsumerDto } from './dto/create-consumer.dto';
 import { UpdateConsumerDto } from './dto/update-consumer.dto';
 import { ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
@@ -20,8 +20,8 @@ export class ConsumerController {
 
   @Get()
   @ApiOperation({ summary: 'Get All Consumers' })
-  @ApiOkResponse({type: Consumer, isArray:true})
-  async getAllConsumers(): Promise<Consumer[]> {
+  @ApiOkResponse({type: User, isArray:true})
+  async getAllConsumers(): Promise<User[]> {
     return await this.consumerService.findAll();
   }
 
@@ -29,7 +29,7 @@ export class ConsumerController {
   async createConsumer(
     @Body()
     consumer: CreateConsumerDto,
-  ): Promise<Consumer> {
+  ): Promise<User> {
     return await this.consumerService.create(consumer);
   }
 
@@ -37,7 +37,7 @@ export class ConsumerController {
   async getConsumer(
     @Param('id')
     id: string,
-  ): Promise<Consumer> {
+  ): Promise<User> {
     return await this.consumerService.findById(id);
   }
 
@@ -47,7 +47,7 @@ export class ConsumerController {
     id: string,
     @Body()
     consumer: UpdateConsumerDto,
-  ): Promise<Consumer> {
+  ): Promise<User> {
     return await this.consumerService.updateById(id, consumer);
   }
 
@@ -55,8 +55,8 @@ export class ConsumerController {
   async deleteConsumer(
     @Param('id')
     id: string,
-    consumer: Consumer,
-  ): Promise<Consumer> {
+    consumer: User,
+  ): Promise<User> {
     return await this.consumerService.deleteById(id, consumer);
   }
 }
