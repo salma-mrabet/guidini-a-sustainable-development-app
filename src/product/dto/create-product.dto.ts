@@ -30,6 +30,7 @@ export class CreateProductDto {
     description: 'Quantity in stock',
   })
   @IsString()
+  @IsOptional()
   quantityInStock: string;
 
 
@@ -39,6 +40,16 @@ export class CreateProductDto {
   @IsString()
   @IsOptional()
   quantityRecommended: string;
+
+  @ApiProperty({
+    description: 'Category',
+    example: 'food and groceries'
+  })
+  @IsString()
+  @IsOptional()
+  category: string;
+
+
 
 
 

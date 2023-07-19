@@ -29,5 +29,13 @@ export class UpdateProductDto {
   @IsOptional()
   quantityRecommended: string;
 
+  @ApiProperty({
+    description: 'Category',
+    example: 'food and groceries'
+  })
+  @IsString()
+  @IsOptional()
+  category: string;
+
 
 }
