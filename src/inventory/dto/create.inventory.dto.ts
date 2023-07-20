@@ -39,6 +39,12 @@ export class CreateInventoryDto {
   })
   user: string ; 
 
+  @ApiProperty({
+    description: 'quantity recommended for the user ',
+  })
+  @IsOptional()
+  quantityRecommended: string;
+
 
 
 

@@ -67,4 +67,14 @@ export class InventoryController {
   ): Promise<Inventory> {
     return this.inventoryService.deleteById(id, inventory);
   }
+
+  // @Get('product-count')
+  // async getProduct1Count(): Promise<number> {
+  //   const productCount = await this.inventoryService.countDocuments({
+  //     productname: 'product1',
+  //   });
+
+  //   return product1Count;
+  // }
+
 }

@@ -33,6 +33,12 @@ export class UpdateInventoryDto {
   @IsString()
   quantity: string;
 
+  @ApiProperty({
+    description: 'quantity recommended for the user ',
+  })
+  @IsOptional()
+  quantityRecommended: string;
+
 
 
 
