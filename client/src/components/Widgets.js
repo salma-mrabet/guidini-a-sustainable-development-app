@@ -1,15 +1,25 @@
 
-import React from "react";
+import React,{useState} from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleDown, faAngleUp, faChartArea, faChartBar, faChartLine, faFlagUsa, faFolderOpen, faGlobeEurope, faPaperclip, faUserPlus } from '@fortawesome/free-solid-svg-icons';
 import { faAngular, faBootstrap, faReact, faVuejs } from "@fortawesome/free-brands-svg-icons";
 import { Col, Row, Card, Image, Button, ListGroup, ProgressBar } from '@themesberg/react-bootstrap';
 import { CircleChart, BarChart, SalesValueChart, SalesValueChartphone } from "./Charts";
-
+// import {
+ 
+//   FormControl,
+//   FormLabel,
+//   Input,
+//   InputGroup,
+//   InputRightElement,
+//   VStack,
+//   useToast,
+// } from '@chakra-ui/react';
 import Profile1 from "../assets/img/aziza.png";
 import ProfileCover from "../assets/img/cover.jpg";
 
 import teamMembers from "../data/teamMembers";
+import axios from "axios";
 
 
 export const ProfileCardWidget = () => {
@@ -32,26 +42,90 @@ export const ProfileCardWidget = () => {
 
 export const ChoosePhotoWidget = (props) => {
   const { title, photo } = props;
+  const [pic, setPic] = useState(null);
+  // const toast = useToast();
 
+  const postDetails = (pics) => {
+    // setLoading(true);
+    if (!pics) {
+      console.log('orzon')
+      // toast({
+      //   title: 'Please select an image!',
+      //   status: 'warning',
+      //   duration: 5000,
+      //   isClosable: true,
+      //   position: 'bottom',
+      // });
+      // setLoading(false);
+      return;
+    }
+
+    if (
+      pics.type === 'image/jpeg' ||
+      pics.type === 'image/jpg' ||
+      pics.type === 'image/png'
+    ) {
+      const data = new FormData();
+
+      data.append('file', pics);
+      data.append('upload_preset', 'RasMsgApp');
+      data.append('cloud_name', 'raslen');
+      axios
+        .post('https://api.cloudinary.com/v1_1/raslen/image/upload', data)
+        .then((res) => {
+          setPic(res.data.url.toString());
+          console.log(res.data);
+          // console.log('orzon')
+          // setLoading(false);
+        })
+        .catch((err) => {
+          console.log(err);
+          // setLoading(false);
+          // toast({
+          //   title: 'Error uploading image.',
+          //   status: 'error',
+          //   duration: 5000,
+          //   isClosable: true,
+          //   position: 'bottom',
+          // });
+        });
+    } else {
+      // toast({
+      //   title: 'Please select an image!',
+      //   status: 'warning',
+      //   duration: 5000,
+      //   isClosable: true,
+      //   position: 'bottom',
+      // });
+      // setLoading(false);
+      return;
+    }
+  };
   return (
     <Card border="light" className="bg-white shadow-sm mb-4">
       <Card.Body>
         <h5 className="mb-4">{title}</h5>
         <div className="d-xl-flex align-items-center">
           <div className="user-avatar xl-avatar">
-            <Image fluid rounded src={Profile1} />
+            <div style={{display:'flex'}}>
+            <input
+          type="file"
+          onChange={(e) => postDetails(e.target.files[0])} />
           </div>
+          {/* <Button variant="outline-dark"  onClick={postDetails}>Upload</Button> */}
+            </div>
+            
           <div className="file-field">
             <div className="d-flex justify-content-xl-center ms-xl-3">
               <div className="d-flex">
                 <span className="icon icon-md">
                   <FontAwesomeIcon icon={faPaperclip} className="me-3" />
                 </span>
-                <input type="file" />
+                {/* <input type="file" />
                 <div className="d-md-block text-start">
                   <div className="fw-normal text-dark mb-1">Choose Image</div>
                   <div className="text-gray small">JPG, GIF or PNG. Max size of 800K</div>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>

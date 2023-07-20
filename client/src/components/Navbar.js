@@ -18,7 +18,11 @@ export default (props) => {
       setNotifications(notifications.map(n => ({ ...n, read: true })));
     }, 300);
   };
-
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    // Replace '/login' with the path to your login page
+    window.location.href = "/login";
+  };
 
   const Notification = (props) => {
     const { link, sender, image, time, message, read = false } = props;
@@ -51,14 +55,14 @@ export default (props) => {
       <Container fluid className="px-0">
         <div className="d-flex justify-content-between w-100">
           <div className="d-flex align-items-center">
-            <Form className="navbar-search">
+            {/* <Form className="navbar-search">
               <Form.Group id="topbarSearch">
                 <InputGroup className="input-group-merge search-bar">
                   <InputGroup.Text><FontAwesomeIcon icon={faSearch} /></InputGroup.Text>
                   <Form.Control type="text" placeholder="Search" />
                 </InputGroup>
               </Form.Group>
-            </Form>
+            </Form> */}
           </div>
           <Nav className="align-items-center">
             <Dropdown as={Nav.Item} onToggle={markNotificationsAsRead} >
@@ -108,9 +112,9 @@ export default (props) => {
 
                 <Dropdown.Divider />
 
-                <Dropdown.Item className="fw-bold">
-                  <FontAwesomeIcon icon={faSignOutAlt} className="text-danger me-2" /> Logout
-                </Dropdown.Item>
+                <Dropdown.Item className="fw-bold" onClick={handleLogout}>
+            <FontAwesomeIcon icon={faSignOutAlt} className="text-danger me-2" /> Logout
+          </Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
           </Nav>

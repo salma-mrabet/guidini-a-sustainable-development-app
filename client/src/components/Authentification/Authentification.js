@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./Authentification.css";
 import log from "../../assets/log1.png";
@@ -9,13 +9,17 @@ import { useHistory } from "react-router-dom";
 import reg from "../../assets/reg.png";
 import { message, Form, Input, Button } from "antd";
 import { Link } from 'react-router-dom';
-
+import { Image } from "antd";
+import Profile3 from '../../assets/img/aziza.png'
 function Authentification() {
   const history = useHistory();
   const [marketname, setMarketname] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isSignUp, setIsSignUp] = useState(false);
+  const [connectedCompanyName, setConnectedCompanyName] = useState("");
+
+  
 
   const handleSignInClick = () => {
     setIsSignUp(false);
@@ -45,19 +49,17 @@ function Authentification() {
       message.error("Something went wrong");
     }
   };
-  
+
   const onFinishHandler = async () => {
     try {
       const res = await axios.post("http://localhost:3000/authmarket/login", {
         email,
         password,
       });
-      console.log("Response from API:", res.data);
-  
+
       if (res.data.token) {
         localStorage.setItem("token", res.data.token);
         message.success("Logged in successfully");
-        console.log("Navigating to /home...");
         history.push("/home"); // Redirect to the home page after successful login
       } else {
         message.error(res.data.message);
@@ -67,7 +69,7 @@ function Authentification() {
       message.error("Something went wrong");
     }
   };
-  
+
   return (
     <div className={`container12 ${isSignUp ? "sign-up-mode" : ""}`}>
       <div className="formss-container">
@@ -110,7 +112,7 @@ function Authentification() {
             <h2 className="title">Sign up</h2>
             <Form.Item
               name="marketname"
-              label={<span style={{ fontSize: "16px", fontWeight: "bold",marginLeft:'0px' }}>Company <br/>Name</span>}
+              label={<span style={{ fontSize: "16px", fontWeight: "bold", marginLeft: "0px" }}>Company <br />Name</span>}
               rules={[{ required: true, message: "Please input your email!" }]}
             >
               <Input
@@ -189,6 +191,12 @@ function Authentification() {
         </div>
         <div className="panel right-panel">
           <div className="content">
+            <div className="media d-flex align-items-center">
+              {/* <Image src={Profile3} className="user-avatar md-avatar rounded-circle" /> */}
+              <div className="media-body ms-2 text-dark align-items-center d-none d-lg-block">
+                <span className="mb-0 font-small fw-bold">{connectedCompanyName}</span>
+              </div>
+            </div>
             <h3
               className="guidinih3"
               style={{

@@ -1,0 +1,129 @@
+/* *, *:before, *:after {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+  }
+  
+
+  
+  h1 {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    margin-left: 70px;
+    margin-top: 65px;
+    font-weight: 400;
+    color: #6a6364;
+  }
+   */
+  /* p {
+    padding: 0;
+    margin: 0;
+  }
+   */
+  .wrapper {
+    position: relative;
+    width: 1700px;
+    height: 470px;
+    background: linear-gradient(#fff8f1, #F7EFCD);
+    box-shadow: 0 10px 60px rgba(0, 0, 0, 0.30);
+    overflow: hidden;
+  }
+  
+  .wrapper:before {
+    position: absolute;
+    content: "";
+    width: 500px;
+    height: 500px;
+    border-radius: 250px;
+    background: linear-gradient(#FBEFD9, #F7E7BF);
+    right: -150px;
+    bottom: -70px;
+  }
+  
+  .cards {
+    display: flex;
+    position: relative;
+    padding-bottom: 60px;
+    padding-top: 40px;
+    padding-left: 50px;
+    overflow: scroll;
+  }
+  
+  .cards::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .cardsWrapper {
+    display: flex;
+    padding-right: 50px;
+  }
+  
+  .card_card {
+    width: 320px;
+    height: 223px;
+    perspective: 500px;
+    margin: 0 23px;
+    flex-shrink: 0;
+  }
+  
+  .image {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    box-shadow: 0 20px 40px -20px rgb(157, 107, 35);
+    transform-style: preserve-3d;
+    transition: all 0.2s linear;
+    background-size: cover;
+  }
+  
+  .screen {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.22);
+    transform: translateZ(35px) scale(0.93);
+  }
+  
+  .text {
+    position: absolute;
+    bottom: 25px;
+    left: 30px;
+    color: white;
+    transform: translateZ(35px) scale(0.93);
+    font-family: 'Quicksand', sans-serif;
+  }
+  
+  .text p {
+    cursor: default;
+  }
+  
+  .text p:first-of-type {
+    font-weight: 500;
+    font-size: 2em;
+    margin-bottom: 5px;
+  }
+  
+  .text p:last-of-type {
+    font-weight: 400;
+    font-size: 0.9em;
+  }
+  
+  .footer {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    width: 140px;
+    margin-left: 72px;
+  }
+  
+  .footer p {
+    margin: 0;
+    padding: 0;
+    text-indent: 2px;
+    font-weight: 400;
+    font-size: 0.5rem;
+    color: #6a6364;
+    cursor: pointer;
+  }
+  

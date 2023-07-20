@@ -1,11 +1,44 @@
-import React from "react";
+import React , { useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faCog, faHome, faSearch } from '@fortawesome/free-solid-svg-icons';
-import { Col, Row, Form, Button, ButtonGroup, Breadcrumb, InputGroup, Dropdown } from '@themesberg/react-bootstrap';
+import { Col, Row, Form, Button, ButtonGroup, Breadcrumb, InputGroup, Dropdown, Modal } from '@themesberg/react-bootstrap';
 
 import { TransactionsTable } from "../components/Tables";
 
 export default () => {
+  const [showAddModal, setShowAddModal] = useState(false);
+  const [newProduct, setNewProduct] = useState({
+    productname: "",
+    brand: "",
+    quantityInStock: "",
+    quantityRecommended: ""
+  });
+  const addProduct = async () => {
+    try {
+      const response = await fetch('http://localhost:3000/product', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(newProduct),
+      });
+  
+      if (response.ok) {
+        console.log("Product added successfully");
+        setShowAddModal(false); // Close the modal after adding the product
+        setNewProduct({
+          productname: "",
+          brand: "",
+          quantityInStock: "",
+          quantityRecommended: ""
+        }); // Reset the new product data
+      } else {
+        console.error("Failed to add product");
+      }
+    } catch (error) {
+      console.error("Error adding product:", error);
+    }
+  };
   return (
     <>
       <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center py-4">
@@ -19,11 +52,42 @@ export default () => {
           {/* <p className="mb-0">Your web analytics dashboard template.</p> */}
         </div>
         <div className="btn-toolbar mb-2 mb-md-0">
-          {/* <ButtonGroup>
-            <Button variant="outline-primary" size="sm">Share</Button>
-            <Button variant="outline-primary" size="sm">Export</Button>
-          </ButtonGroup> */}
-        </div>
+        <ButtonGroup>
+          <Button variant="outline-primary" size="sm" onClick={() => setShowAddModal(true)}>Add</Button>
+        </ButtonGroup>
+      </div>
+
+      {/* Add Product Modal */}
+      <Modal as={Form} centered show={showAddModal} onHide={() => setShowAddModal(false)}>
+        <Modal.Header>
+          <Modal.Title>Add Product</Modal.Title>
+          <Button variant="close" aria-label="Close" onClick={() => setShowAddModal(false)} />
+        </Modal.Header>
+        <Modal.Body>
+          {/* Add your form fields here to collect product information */}
+          <Form.Group className="mb-3">
+            <Form.Label>Product Name</Form.Label>
+            <Form.Control type="text" placeholder="Enter product name" value={newProduct.productname} onChange={(e) => setNewProduct({ ...newProduct, productname: e.target.value })} />
+          </Form.Group>
+          <Form.Group className="mb-3">
+            <Form.Label>Brand</Form.Label>
+            <Form.Control type="text" placeholder="Enter brand name" value={newProduct.brand} onChange={(e) => setNewProduct({ ...newProduct, brand: e.target.value })} />
+          </Form.Group>
+          <Form.Group className="mb-3">
+            <Form.Label>Quantity in Stock</Form.Label>
+            <Form.Control type="text" placeholder="Enter quantity in stock" value={newProduct.quantityInStock} onChange={(e) => setNewProduct({ ...newProduct, quantityInStock: e.target.value })} />
+          </Form.Group>
+          <Form.Group className="mb-3">
+            <Form.Label>Quantity Recommended</Form.Label>
+            <Form.Control type="text" placeholder="Enter quantity recommended" value={newProduct.quantityRecommended} onChange={(e) => setNewProduct({ ...newProduct, quantityRecommended: e.target.value })} />
+          </Form.Group>
+          {/* Add other form fields for quantityInStock, quantityRecommended, etc. */}
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => setShowAddModal(false)}>Cancel</Button>
+          <Button variant="primary" onClick={addProduct}>Save Product</Button>
+        </Modal.Footer>
+      </Modal>
       </div>
 
       <div className="table-settings mb-4">

@@ -47,7 +47,7 @@ export default () => {
 
     return (
       <Col xs={12} sm={6} lg={3}>
-        <Card className="bg-white shadow-soft text-primary rounded mb-4">
+        {/* <Card className="bg-white shadow-soft text-primary rounded mb-4">
           <div className="px-3 px-lg-4 py-5 text-center">
             <span className="icon icon-lg mb-4">
               <FontAwesomeIcon icon={icon} />
@@ -55,7 +55,7 @@ export default () => {
             <h5 className="fw-bold text-primary">{title}</h5>
             <p>{description}</p>
           </div>
-        </Card>
+        </Card> */}
       </Col>
     );
   };
@@ -79,7 +79,7 @@ export default () => {
 
   return (
     <>
-      <Navbar variant="dark" expand="lg" bg="dark" className="navbar-transparent navbar-theme-primary sticky-top">
+      {/* <Navbar variant="dark" expand="lg" bg="dark" className="navbar-transparent navbar-theme-primary sticky-top">
         <Container className="position-relative justify-content-between px-3">
           <Navbar.Brand as={HashLink} to="#home" className="me-lg-3 d-flex align-items-center">
             <Image src={ReactHero} />
@@ -537,7 +537,7 @@ export default () => {
             </Col>
           </Row>
         </Container>
-      </footer>
+      </footer> */}
     </>
   );
 };
