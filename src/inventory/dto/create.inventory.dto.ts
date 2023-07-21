@@ -34,7 +34,16 @@ export class CreateInventoryDto {
   @IsString()
   quantity: string;
 
+  @ApiProperty({
+    description: 'id of the current user ',
+  })
   user: string ; 
+
+  @ApiProperty({
+    description: 'quantity recommended for the user ',
+  })
+  @IsOptional()
+  quantityRecommended: string;
 
 
 

@@ -18,16 +18,16 @@ import { SupermarketModule } from './supermarket/supermarket.module';
       envFilePath: '.env',
       isGlobal: true,
     }),
+
     MongooseModule.forRoot(process.env.DB_URI),
-   
     ProductModule,
     AdModule,
-
     AuthModule,
     AuthMarketModule,
     InventoryModule,
     UserModule,
     SupermarketModule,
+
   ],
   controllers: [AppController],
   providers: [AppService],

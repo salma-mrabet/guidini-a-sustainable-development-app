@@ -35,6 +35,9 @@ export class Inventory {
   @Prop({  ref:'User'})
   user: string ;
 
+  @Prop()
+  quantityRecommended: string;
+
   
 
 }

@@ -67,4 +67,17 @@ export class InventoryController {
   ): Promise<Inventory> {
     return this.inventoryService.deleteById(id, inventory);
   }
+
+  // @Get(':product')
+  // async getProductCount(
+  //   @Param('product')
+  //   product: string,
+  // ): Promise<number> {
+  //   return this.inventoryService.getProductCount(product);
+    
+  // }
+
+   
+  
+
 }

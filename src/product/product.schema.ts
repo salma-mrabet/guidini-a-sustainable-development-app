@@ -26,6 +26,9 @@ export class Product {
   @Prop()
   quantityRecommended: string;
 
+  @Prop()
+  category: string;
+
   // @Prop({ type: mongoose.Schema.Types.ObjectId, ref:'User'})
   // user: User ;
 

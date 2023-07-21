@@ -5,14 +5,19 @@ import {
   IsNotEmpty,
   IsOptional,
   IsEmpty,
+  IsDate,
 } from 'class-validator';
 
-
-export class CreateProductDto {
-    
-
-
+export class CreateAdDto {
   @IsNotEmpty()
+  @ApiProperty({
+    description: 'ad name',
+    example: 'offer, reduction .. ',
+    required: true,
+  })
+  adname: string;
+
+
   @ApiProperty({
     description: 'product name',
     required: true,
@@ -21,36 +26,35 @@ export class CreateProductDto {
 
 
   @ApiProperty({
+    description: 'product id',
+    required: true,
+  })
+  productId: string;
+  
+  @ApiProperty({
     description: 'Product Brand',
   })
-  @IsString()
+
   brand: string;
 
   @ApiProperty({
-    description: 'Quantity in stock',
+    description: 'image of the ad ',
   })
   @IsString()
   @IsOptional()
-  quantityInStock: string;
-
+  image: string;
 
   @ApiProperty({
-    description: 'quantity Recommended',
+    description: 'begin date',
   })
-  @IsString()
+
   @IsOptional()
-  quantityRecommended: string;
+  begin_date: Date;
 
   @ApiProperty({
-    description: 'Category',
-    example: 'food and groceries'
+    description: 'end date',
   })
-  @IsString()
+ 
   @IsOptional()
-  category: string;
-
-
-
-
-
+  end_date: Date;
 }
