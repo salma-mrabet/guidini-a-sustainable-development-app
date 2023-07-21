@@ -32,7 +32,7 @@ export class Inventory {
   quantity: string;
 
 
-  @Prop({  ref:'User'})
+  @Prop()
   user: string ;
 
   @Prop()

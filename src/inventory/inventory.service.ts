@@ -13,8 +13,8 @@ export class InventoryService {
       ) {}
     
       async findAll(): Promise<Inventory[]> {
-        const inventorys = await this.inventoryModel.find();
-        return inventorys;
+        const inventories = await this.inventoryModel.find();
+        return inventories;
       }
 
       async findAllByUser(): Promise<Inventory[]> {
@@ -49,8 +49,17 @@ export class InventoryService {
         return await this.inventoryModel.findByIdAndDelete(id, inventory);
       }
 
-      // async getProductCount(product: string): Promise<number> {
-      //   return await this.inventoryModel.countDocuments({  productname: product });
+      async getProductCount(product: string): Promise<number> {
+        console.log(product)
+        return await this.inventoryModel.countDocuments({  productname: product });
 
+      }
+
+      // async getProductCount(id: string): Promise<number> {
+      //   const inventory= await this.findById(id)
+      //   const matchingProducts: Inventory[] = await this.inventoryModel.find({
+      //     productname: inventory.productname,
+      //   });  
+      //   return matchingProducts.length; // Return the count of matching documents
       // }
 }
