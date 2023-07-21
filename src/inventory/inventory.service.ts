@@ -48,4 +48,9 @@ export class InventoryService {
       async deleteById(id: string, inventory: Inventory): Promise<Inventory> {
         return await this.inventoryModel.findByIdAndDelete(id, inventory);
       }
+
+      // async getProductCount(product: string): Promise<number> {
+      //   return await this.inventoryModel.countDocuments({  productname: product });
+
+      // }
 }
