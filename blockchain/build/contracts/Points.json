@@ -1,0 +1,118 @@
+{
+  "contractName": "Points",
+  "abi": [],
+  "metadata": "{\"compiler\":{\"version\":\"0.8.19+commit.7dd6d404\"},\"language\":\"Solidity\",\"output\":{\"abi\":[],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/Points.sol\":\"Points\"},\"evmVersion\":\"paris\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/Points.sol\":{\"keccak256\":\"0x27f2ca7fffb079c6838c475933e588674e8e8e7eaaa59cd9746153eb231a4f30\",\"urls\":[\"bzz-raw://43e37b468d58aa95ab51dd3703f884a8ca4e31a3fe2b7ce8a69d4fe08045d49f\",\"dweb:/ipfs/QmSYKVkfbVXLHNWHmuKKLHWGzQVs5HFi6dSUhbSC5wFwxq\"]}},\"version\":1}",
+  "bytecode": "0x608060405260008055348015601357600080fd5b50603f8060216000396000f3fe6080604052600080fdfea26469706673582212204026ac322bc64e370c0a8bc947a85320d1360b68df1ed504ae0b5edfebbec8bd64736f6c63430008130033",
+  "deployedBytecode": "0x6080604052600080fdfea26469706673582212204026ac322bc64e370c0a8bc947a85320d1360b68df1ed504ae0b5edfebbec8bd64736f6c63430008130033",
+  "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [],
+  "sourceMap": "28:44:1:-:0;;;67:1;49:19;;28:44;;;;;;;;;;;;;;;;",
+  "deployedSourceMap": "28:44:1:-:0;;;;;",
+  "source": "pragma solidity ^0.8.19;\r\n\r\ncontract Points {  \r\nuint pointCount = 0;\r\n}\r\n",
+  "sourcePath": "C:\\Users\\Moad\\Desktop\\guidini\\backend\\blockchain\\contracts\\Points.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/Points.sol",
+    "exportedSymbols": {
+      "Points": [
+        38
+      ]
+    },
+    "id": 39,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 34,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".19"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:24:1"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "canonicalName": "Points",
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "fullyImplemented": true,
+        "id": 38,
+        "linearizedBaseContracts": [
+          38
+        ],
+        "name": "Points",
+        "nameLocation": "37:6:1",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": false,
+            "id": 37,
+            "mutability": "mutable",
+            "name": "pointCount",
+            "nameLocation": "54:10:1",
+            "nodeType": "VariableDeclaration",
+            "scope": 38,
+            "src": "49:19:1",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_uint256",
+              "typeString": "uint256"
+            },
+            "typeName": {
+              "id": 35,
+              "name": "uint",
+              "nodeType": "ElementaryTypeName",
+              "src": "49:4:1",
+              "typeDescriptions": {
+                "typeIdentifier": "t_uint256",
+                "typeString": "uint256"
+              }
+            },
+            "value": {
+              "hexValue": "30",
+              "id": 36,
+              "isConstant": false,
+              "isLValue": false,
+              "isPure": true,
+              "kind": "number",
+              "lValueRequested": false,
+              "nodeType": "Literal",
+              "src": "67:1:1",
+              "typeDescriptions": {
+                "typeIdentifier": "t_rational_0_by_1",
+                "typeString": "int_const 0"
+              },
+              "value": "0"
+            },
+            "visibility": "internal"
+          }
+        ],
+        "scope": 39,
+        "src": "28:44:1",
+        "usedErrors": []
+      }
+    ],
+    "src": "0:74:1"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.8.19+commit.7dd6d404.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.14",
+  "updatedAt": "2023-07-24T11:29:54.724Z",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  }
+}
