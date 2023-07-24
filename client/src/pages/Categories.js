@@ -1,9 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import './Tinder.css';
 
-const TinderCard = ({ imageSrc, title, duration }) => {
+const TinderCard = ({ imageSrc, title, duration, onCardClick }) => {
   return (
-    <div className="card_card" style={{marginTop:'100px'}}>
+    <div className="card_card" style={{ marginTop: '100px' }} onClick={onCardClick}>
       <div
         className="image"
         style={{
@@ -21,8 +21,10 @@ const TinderCard = ({ imageSrc, title, duration }) => {
 };
 
 const Categories = () => {
+  const [showPopup, setShowPopup] = useState(false);
+
   useEffect(() => {
-    const cards = document.querySelectorAll('.card');
+    const cards = document.querySelectorAll('.card_card');
 
     cards.forEach((card) => {
       card.addEventListener('mousemove', handleMouseMove);
@@ -57,20 +59,23 @@ const Categories = () => {
     card.style.transform = 'rotateY(0deg) rotateX(0deg)';
   };
 
+  const handleFreshProduceClick = () => {
+    setShowPopup(true);
+  };
+
   return (
-    <div className="wrapper" style={{marginTop:'100px'}}>
+    <div className="wrapper" style={{ marginTop: '100px' }}>
       <h1>Show Categories</h1>
       <div className="cards">
         <div className="cardsWrapper">
           <TinderCard
             imageSrc="https://www.jbtc.com/foodtech/wp-content/uploads/sites/2/2021/08/Fresh-Produce-Collage.jpg"
             title="Fresh Produce"
-            
+            onCardClick={handleFreshProduceClick}
           />
           <TinderCard
             imageSrc="https://www.bruker.com/en/applications/food-analysis-and-agriculture/food-quality/milk-and-dairy/_jcr_content/root/herostage/backgroundImageVPL.coreimg.82.1280.jpeg/1596451146895/milk-dairy.jpeg"
-            title="Dairy Products: "
-            
+            title="Dairy Products"
           />
           <TinderCard
             imageSrc="https://buzzer.lk/wp-content/uploads/2023/06/Bakery.jpg"
@@ -96,8 +101,27 @@ const Categories = () => {
             
           />
           {/* Add more cards here... */}
-        </div>
+          </div>
       </div>
+      {showPopup && (
+        <div className="popup">
+          <h2>10 Advices for Fresh Produce:</h2>
+          <ul>
+            
+            <li>Inspect for Quality: Always check the produce for signs of freshness. Look for vibrant colors, firmness, and avoid any bruised or damaged areas.</li>
+            <li>Buy Seasonal Produce: Choose fruits and vegetables that are in-season. They are more likely to be fresher, tastier, and less expensive.</li>
+            <li>Choose Locally Sourced: If possible, buy produce from local farmers or markets. It reduces the time between harvesting and consumption, ensuring better quality.</li>
+            <li>Proper Storage: Learn how to store each type of produce correctly. Some fruits and vegetables are best kept in the fridge, while others should be stored at room temperature.</li>
+            <li>Wash Thoroughly: Rinse fruits and vegetables under cool running water before consumption to remove dirt, bacteria, and pesticide residues.</li>
+            <li>Use Ethylene Separators: Certain fruits and vegetables release ethylene gas, which can cause others to ripen or spoil faster. Use ethylene-absorbing liners or store them separately.</li>
+            <li>Avoid Overloading: Don't overload your refrigerator or storage areas with too much produce. It can lead to improper air circulation and faster spoilage.</li>
+            <li>Cut and Prepare Properly: If you need to cut or prepare produce in advance, do so properly and keep them in airtight containers to maintain freshness.</li>
+            <li>Use within Timeframe: Consume fresh produce within the recommended timeframes. Some items have a short shelf life, while others can be frozen for later use.</li>
+            <li>Be Mindful of Ripening: If you have produce approaching its ripeness, prioritize using or preserving it to avoid wastage.</li>
+          </ul>
+          <button onClick={() => setShowPopup(false)}>Close</button>
+        </div>
+      )}
       <div className="footer">
         <p>Booking rules</p>
         <p>Terms of use</p>
@@ -107,3 +131,4 @@ const Categories = () => {
 };
 
 export default Categories;
+//

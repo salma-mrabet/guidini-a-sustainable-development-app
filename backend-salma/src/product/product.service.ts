@@ -39,7 +39,5 @@ export class ProductService {
   async deleteById(id: string, product: Product): Promise<Product> {
     return await this.productModel.findByIdAndDelete(id, product);
   }
-
- 
   
 }

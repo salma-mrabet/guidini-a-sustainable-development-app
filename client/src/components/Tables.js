@@ -31,7 +31,8 @@ import { Routes } from "../routes";
 import { pageVisits, pageTraffic, pageRanking } from "../data/tables";
 import transactions from "../data/transactions";
 import commands from "../data/commands";
-import AddAdPopupForm from "./AddadFormPopup";
+import AddPublicityFormPopup from "./Ad";
+import UpdatePublicityFormPopup from "./UpdateFormPopup";
 
 const ValueChange = ({ value, suffix }) => {
   const valueIcon = value < 0 ? faAngleDown : faAngleUp;
@@ -252,25 +253,50 @@ export const RankingTable = () => {
 };
 
 const TableRow = (props) => {
-  const { _id, productname, brand, quantityInStock, quantityRecommended } =
-    props;
-  const [showPopup, setShowPopup] = useState(false);
+  const {
+    _id,
+    productname,
+    brand,
+    quantityInStock,
+    quantityRecommended,
+    category,
+  } = props;
 
-  const handleAddAd = (adData) => {
-    // Do something with the adData, like sending it to the server
-    console.log("Adding ad data:", adData);
+  const [showAddPopup, setShowAddPopup] = useState(false);
+  const [showEditPopup, setShowEditPopup] = useState(false);
+  const [selectedRowData, setSelectedRowData] = useState({
+    productname: "",
+    productId: "",
+    brand: "",
+  });
+
+  const handleAddAd = () => {
+    setSelectedRowData({
+      productname,
+      productId: _id,
+      brand,
+    });
+    setShowAddPopup(true);
   };
-  const handleClosePopup = () => {
-    setShowPopup(false);
+
+  const handleEditAd = () => {
+    setSelectedRowData({
+      productname,
+      productId: _id,
+      brand,
+    });
+    setShowEditPopup(true);
   };
-  // const statusVariant = status === "Paid" ? "success"
-  //   : status === "Due" ? "warning"
-  //     : status === "Canceled" ? "danger" : "primary";
+
+  const handleDeleteAd = () => {
+    // Implement your delete logic here
+    console.log("Deleting advertisement:", _id);
+  };
 
   return (
     <tr>
       <td>
-        <Card.Link as={Link} to={`/product/${_id}`} className="fw-normal">
+        <Card.Link href={`/product/${_id}`} className="fw-normal">
           {productname}
         </Card.Link>
       </td>
@@ -284,42 +310,63 @@ const TableRow = (props) => {
         <span className="fw-normal">{quantityRecommended}</span>
       </td>
       <td>
+        <span className="fw-normal">{category}</span>
+      </td>
+      <td>
         <Dropdown as={ButtonGroup}>
-          <Dropdown.Toggle
-            as={Button}
-            split
-            variant="link"
-            className="text-dark m-0 p-0"
-          >
-            <span className="icon icon-sm">
-              <FontAwesomeIcon icon={faEllipsisH} className="icon-dark" />
-            </span>
+          <Dropdown.Toggle as={Card.Link} className="text-dark m-0 p-0">
+            <FontAwesomeIcon icon={faEllipsisH} className="icon-dark" />
           </Dropdown.Toggle>
           <Dropdown.Menu>
-            <Dropdown.Item onClick={() => setShowPopup(true)}>
-              <FontAwesomeIcon icon={faEye} className="me-2" /> Add Publicity
+            <Dropdown.Item onClick={handleAddAd}>
+              <FontAwesomeIcon icon={faEye} className="me-2" /> Create Ad
             </Dropdown.Item>
-            <Dropdown.Item>
+            <Dropdown.Item onClick={handleEditAd}>
               <FontAwesomeIcon icon={faEdit} className="me-2" /> Edit
             </Dropdown.Item>
-            <Dropdown.Item className="text-danger">
+            <Dropdown.Item className="text-danger" onClick={handleDeleteAd}>
               <FontAwesomeIcon icon={faTrashAlt} className="me-2" /> Remove
             </Dropdown.Item>
-            <AddAdPopupForm
-        show={showPopup}
-        handleClose={handleClosePopup}
-        handleAddAd={handleAddAd}
-      />
           </Dropdown.Menu>
         </Dropdown>
       </td>
+      {showAddPopup && (
+        <AddPublicityFormPopup
+          show={showAddPopup}
+          handleClose={() => setShowAddPopup(false)}
+          selectedRowData={selectedRowData}
+          isEditMode={false}
+          handleSubmit={() => {
+            // Handle the submit logic for adding an ad here
+            console.log("Adding advertisement:", selectedRowData);
+            setShowAddPopup(false);
+          }}
+        />
+      )}
+      {showEditPopup && (
+        <UpdatePublicityFormPopup
+          show={showEditPopup}
+          handleClose={() => setShowEditPopup(false)}
+          selectedRowData={selectedRowData}
+          handleSubmit={() => {
+            // Handle the submit logic for updating an ad here
+            console.log("Updating advertisement:", selectedRowData);
+            setShowEditPopup(false);
+          }}
+        />
+      )}
     </tr>
   );
 };
+
+
+export default TableRow;
+
 export const TransactionsTable = () => {
   const [transactionsData, setTransactionsData] = useState([]);
+  const [selectedRow, setSelectedRow] = useState(null);
   const totalTransactions = transactions.length;
-
+  
   const fetchProductData = async () => {
     try {
       const response = await fetch("http://localhost:3000/product");
@@ -344,6 +391,8 @@ export const TransactionsTable = () => {
               <th className="border-bottom">Brand</th>
               <th className="border-bottom">Quantity in Stock</th>
               <th className="border-bottom">Quantity Recommended</th>
+              <th className="border-bottom">Category</th>
+
               <th className="border-bottom">Actions</th>
             </tr>
           </thead>

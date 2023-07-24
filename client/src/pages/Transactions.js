@@ -11,7 +11,8 @@ export default () => {
     productname: "",
     brand: "",
     quantityInStock: "",
-    quantityRecommended: ""
+    quantityRecommended: "",
+    category:""
   });
   const addProduct = async () => {
     try {
@@ -30,7 +31,8 @@ export default () => {
           productname: "",
           brand: "",
           quantityInStock: "",
-          quantityRecommended: ""
+          quantityRecommended: "",
+          category:""
         }); // Reset the new product data
       } else {
         console.error("Failed to add product");
@@ -80,6 +82,10 @@ export default () => {
           <Form.Group className="mb-3">
             <Form.Label>Quantity Recommended</Form.Label>
             <Form.Control type="text" placeholder="Enter quantity recommended" value={newProduct.quantityRecommended} onChange={(e) => setNewProduct({ ...newProduct, quantityRecommended: e.target.value })} />
+          </Form.Group>
+          <Form.Group className="mb-3">
+            <Form.Label>Category</Form.Label>
+            <Form.Control type="text" placeholder="Enter category" value={newProduct.category} onChange={(e) => setNewProduct({ ...newProduct, category: e.target.value })} />
           </Form.Group>
           {/* Add other form fields for quantityInStock, quantityRecommended, etc. */}
         </Modal.Body>

@@ -126,4 +126,38 @@
     color: #6a6364;
     cursor: pointer;
   }
+  .popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .popup h2 {
+    margin-top: 0;
+  }
+  
+  .popup ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+  
+  .popup li {
+    margin-bottom: 10px;
+  }
+  
+  .popup button {
+    margin-top: 20px;
+    background-color: #007bff;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
   

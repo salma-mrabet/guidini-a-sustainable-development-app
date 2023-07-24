@@ -17,6 +17,7 @@ import Lock from "./examples/Lock";
 import NotFoundPage from "./examples/NotFound";
 import ServerError from "./examples/ServerError";
 
+
 // documentation pages
 import DocsOverview from "./documentation/DocsOverview";
 import DocsDownload from "./documentation/DocsDownload";
@@ -51,6 +52,12 @@ import Toasts from "./components/Toasts";
 import Authentification from '../components/Authentification/Authentification';
 import Categories from './Categories';
 import ContactForm from './ContactForm';
+import {  FreshProduceCRUD } from './FreshProduceCRUD';
+import { DairyProductsCRUD } from './DairyProducts';
+import { BakeryProductsCRUD } from './BakeryProductsCRUD';
+import { MeatPoultryCRUD } from './MeatPoultryProducts';
+import { FrozenFoodCRUD } from './FrozenFoodCrud';
+import LandingPage from './LandingPage';
 
 const RouteWithLoader = ({ component: Component, ...rest }) => {
   const [loaded, setLoaded] = useState(false);
@@ -104,6 +111,7 @@ const RouteWithSidebar = ({ component: Component, ...rest }) => {
 export default () => (
   <Switch>
   <RouteWithLoader exact path={Routes.Authentification.path} component={Authentification} />
+  <RouteWithLoader exact path={Routes.LandingPage.path} component={LandingPage} />
     <RouteWithLoader exact path={Routes.Signin.path} component={Signin} />
     <RouteWithLoader exact path={Routes.Signup.path} component={Signup} />
     <RouteWithLoader exact path={Routes.ForgotPassword.path} component={ForgotPassword} />
@@ -116,7 +124,15 @@ export default () => (
     <RouteWithSidebar exact path={Routes.DashboardOverview.path} component={DashboardOverview} />
     <RouteWithSidebar exact path={Routes.Upgrade.path} component={Upgrade} />
     <RouteWithSidebar exact path={Routes.Transactions.path} component={Transactions} />
+
     <RouteWithSidebar exact path={Routes.Categories.path} component={Categories} />
+    <RouteWithSidebar exact path={Routes.FreeshProduceCRUD.path} component={FreshProduceCRUD} />
+    <RouteWithSidebar exact path={Routes.DairyProductsCRUD.path} component={DairyProductsCRUD} />
+    <RouteWithSidebar exact path={Routes.BakeryProductsCRUD.path} component={BakeryProductsCRUD} />
+    <RouteWithSidebar exact path={Routes.MeatPoultryCRUD.path} component={MeatPoultryCRUD} />
+    <RouteWithSidebar exact path={Routes.FrozenFoodCRUD.path} component={FrozenFoodCRUD} />
+
+
     <RouteWithSidebar exact path={Routes.Settings.path} component={Settings} />
     <RouteWithSidebar exact path={Routes.ContactForm.path} component={ContactForm} />
     <RouteWithSidebar exact path={Routes.BootstrapTables.path} component={BootstrapTables} />

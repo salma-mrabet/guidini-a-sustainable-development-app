@@ -1,10 +1,10 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { forwardRef,Injectable, NotFoundException,Inject } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import mongoose from 'mongoose';
 import { Ad } from './schemas/ad.schema';
 import { Product } from 'src/product/product.schema';
 import { ProductModule } from 'src/product/product.module';
-import { ProductService } from 'src/product/product.service';
+import { ProductService } from '../product/product.service';
 
 @Injectable()
 export class AdService {
@@ -12,8 +12,8 @@ export class AdService {
         @InjectModel(Ad.name)
         
         private adModel: mongoose.Model<Ad>,
-       
-        private productModel: ProductService,
+        @Inject(forwardRef(() => ProductService))
+        private productService: ProductService,
       ) {}
     
       async findAll(): Promise<Ad[]> {
@@ -21,11 +21,16 @@ export class AdService {
         return ads;
       }
     
-      async create(ad: Ad, id: string): Promise<Ad> {
-        const product = await this.productModel.findById(id)
-        ad.productId = id ;
-        ad.productname= product.productname;
-        ad.brand = product.brand;
+      // async create(ad: Ad, id: string): Promise<Ad> {
+      //   const product = await this. productService.findById(id)
+      //   ad.productId = id ;
+      //   ad.productname= product.productname;
+      //   ad.brand = product.brand;
+      //   const res = await this.adModel.create(ad);
+      //   return res;
+      // }
+      async create(ad: Ad): Promise<Ad> {
+        
         const res = await this.adModel.create(ad);
         return res;
       }

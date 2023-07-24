@@ -8,6 +8,7 @@ import { GeneralInfoForm } from './Forms';
 
 const ParentComponent = () => {
   const [marketId, setMarketId] = useState('');
+  const [logo, setLogo] = useState(null);
 
   // Fetch the connected market's ID from the JWT token using useEffect
   useEffect(() => {

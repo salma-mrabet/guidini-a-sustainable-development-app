@@ -23,8 +23,7 @@ export const GeneralInfoForm = ({ marketId }) => {
   const [phone, setPhone] = useState("");
   const [description, setDescription] = useState("");
   const [area, setArea] = useState("");
-  // const { title, photo } = props;
-  const [logo, setLogo] = useState(null);
+  const [logo, setLogo] = useState("");
   const [address, setAddress] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
@@ -173,9 +172,10 @@ export const GeneralInfoForm = ({ marketId }) => {
   };
  
   return (
-    <div>
-    <Card border="light" className="bg-white shadow-sm mb-4">
-      <Card.Body>
+    <div className="d-flex flex-wrap">
+      <div className="flex-grow-1 pr-3">
+      <Card border="light" className="bg-white shadow-sm mb-4">  
+        <Card.Body>
         <h5 className="mb-4">General information</h5>
         <Form>
           <Row>
@@ -310,8 +310,10 @@ export const GeneralInfoForm = ({ marketId }) => {
       </Card.Body>
       
     </Card>
-     <Card border="light" className="text-center p-0 mb-4">
-     <div style={{ backgroundImage: `url(${ProfileCover})` }} className="profile-cover rounded-top" />
+    </div>
+    <div className="flex-shrink-1 pl-3" style={{ width: "30%" }}>
+    <Card border="light" className="text-center p-0 mb-4"> 
+      <div style={{ backgroundImage: `url(${ProfileCover})` }} className="profile-cover rounded-top" />
      <Card.Body className="pb-5">
        <Card.Img src={logo} alt="Neil Portrait" className="user-avatar large-avatar rounded-circle mx-auto mt-n7 mb-4" />
        <Card.Title>{companyName}</Card.Title>
@@ -323,6 +325,7 @@ export const GeneralInfoForm = ({ marketId }) => {
        <Button variant="secondary" size="sm">Send Message</Button> */}
      </Card.Body>
    </Card>
+   </div>
    </div>
   );
 };

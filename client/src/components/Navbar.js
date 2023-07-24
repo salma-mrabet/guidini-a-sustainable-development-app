@@ -1,10 +1,12 @@
 
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
+import jwt_decode from "jwt-decode"; // Import the jwt-decode library
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBell, faCog, faEnvelopeOpen, faSearch, faSignOutAlt, faUserShield } from "@fortawesome/free-solid-svg-icons";
 import { faUserCircle } from "@fortawesome/free-regular-svg-icons";
 import { Row, Col, Nav, Form, Image, Navbar, Dropdown, Container, ListGroup, InputGroup } from '@themesberg/react-bootstrap';
-
+import axios from "axios";
 import NOTIFICATIONS_DATA from "../data/notifications";
 import Profile3 from "../assets/img/aziza.png";
 
@@ -12,17 +14,78 @@ import Profile3 from "../assets/img/aziza.png";
 export default (props) => {
   const [notifications, setNotifications] = useState(NOTIFICATIONS_DATA);
   const areNotificationsRead = notifications.reduce((acc, notif) => acc && notif.read, true);
+  const [profileData, setProfileData] = useState({ logo: null, companyName: "" });
 
   const markNotificationsAsRead = () => {
     setTimeout(() => {
       setNotifications(notifications.map(n => ({ ...n, read: true })));
     }, 300);
   };
+  
+
   const handleLogout = () => {
     localStorage.removeItem("token");
     // Replace '/login' with the path to your login page
     window.location.href = "/login";
   };
+
+  const fetchUserProfile = async () => {
+    try {
+      const token = localStorage.getItem("token");
+      console.log("Stored Token:", token);
+  
+      // Check if the token exists and is not empty
+      let decodedToken = null;
+      if (token) {
+        // Use jwt-decode to extract the token payload
+        decodedToken = jwt_decode(token);
+        console.log("Decoded Token:", decodedToken);
+      } else {
+        console.log("Token not found in localStorage or is empty.");
+      }
+  
+      // Check if the decodedToken is not null before proceeding
+      if (decodedToken) {
+        const marketIdToDisplay = decodedToken.id;
+        console.log("Market ID To Display:", marketIdToDisplay);
+  
+        const response = await axios.get(`http://localhost:3000/supermarket/${marketIdToDisplay}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+  
+        console.log("API Response:", response.data);
+  
+        // Access the name and logo of the connected market from the response data
+        const { marketname, logo, ...otherProperties } = response.data;
+        console.log("Connected Market Name:", marketname);
+        console.log("Connected Market Logo:", logo);
+  
+        // Now you have access to the marketname and logo of the connected market
+        // You can use them as needed, e.g., set them in the state
+        setProfileData({ logo, companyName: marketname });
+  
+        // If needed, you can also access other properties of the connected market
+        console.log("Other Properties of Connected Market:", otherProperties);
+      } else {
+        console.log("Decoded token is null.");
+      }
+    } catch (error) {
+      console.error("Error fetching user profile:", error);
+    }
+  };
+  
+  useEffect(() => {
+    fetchUserProfile();
+  }, []);
+  
+  
+  
+  
+  
+  
+  
 
   const Notification = (props) => {
     const { link, sender, image, time, message, read = false } = props;
@@ -30,7 +93,7 @@ export default (props) => {
 
     return (
       <ListGroup.Item action href={link} className="border-bottom border-light">
-        <Row className="align-items-center">
+        {/* <Row className="align-items-center">
           <Col className="col-auto">
             <Image src={image} className="user-avatar lg-avatar rounded-circle" />
           </Col>
@@ -45,7 +108,7 @@ export default (props) => {
             </div>
             <p className="font-small mt-1 mb-0">{message}</p>
           </Col>
-        </Row>
+        </Row> */}
       </ListGroup.Item>
     );
   };
@@ -55,17 +118,10 @@ export default (props) => {
       <Container fluid className="px-0">
         <div className="d-flex justify-content-between w-100">
           <div className="d-flex align-items-center">
-            {/* <Form className="navbar-search">
-              <Form.Group id="topbarSearch">
-                <InputGroup className="input-group-merge search-bar">
-                  <InputGroup.Text><FontAwesomeIcon icon={faSearch} /></InputGroup.Text>
-                  <Form.Control type="text" placeholder="Search" />
-                </InputGroup>
-              </Form.Group>
-            </Form> */}
+          
           </div>
           <Nav className="align-items-center">
-            <Dropdown as={Nav.Item} onToggle={markNotificationsAsRead} >
+            {/* <Dropdown as={Nav.Item} onToggle={markNotificationsAsRead} >
               <Dropdown.Toggle as={Nav.Link} className="text-dark icon-notifications me-lg-3">
                 <span className="icon icon-sm">
                   <FontAwesomeIcon icon={faBell} className="bell-shake" />
@@ -85,31 +141,19 @@ export default (props) => {
                   </Dropdown.Item>
                 </ListGroup>
               </Dropdown.Menu>
-            </Dropdown>
+            </Dropdown> */}
 
             <Dropdown as={Nav.Item}>
               <Dropdown.Toggle as={Nav.Link} className="pt-1 px-0">
                 <div className="media d-flex align-items-center">
-                  <Image src={Profile3} className="user-avatar md-avatar rounded-circle" />
+                <Image src={profileData.logo} className="user-avatar md-avatar rounded-circle" />
                   <div className="media-body ms-2 text-dark align-items-center d-none d-lg-block">
-                    <span className="mb-0 font-small fw-bold">Aziza</span>
+                  <span className="mb-0 font-small fw-bold">{profileData.companyName}</span>
                   </div>
                 </div>
               </Dropdown.Toggle>
               <Dropdown.Menu className="user-dropdown dropdown-menu-right mt-2">
-                {/* <Dropdown.Item className="fw-bold">
-                  <FontAwesomeIcon icon={faUserCircle} className="me-2" /> My Profile
-                </Dropdown.Item>
-                <Dropdown.Item className="fw-bold">
-                  <FontAwesomeIcon icon={faCog} className="me-2" /> Settings
-                </Dropdown.Item>
-                <Dropdown.Item className="fw-bold">
-                  <FontAwesomeIcon icon={faEnvelopeOpen} className="me-2" /> Messages
-                </Dropdown.Item>
-                <Dropdown.Item className="fw-bold">
-                  <FontAwesomeIcon icon={faUserShield} className="me-2" /> Support
-                </Dropdown.Item> */}
-
+               
                 <Dropdown.Divider />
 
                 <Dropdown.Item className="fw-bold" onClick={handleLogout}>
