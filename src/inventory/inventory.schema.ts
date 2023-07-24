@@ -37,7 +37,7 @@ export class Inventory {
 
   @Prop()
   quantityRecommended: number;
-
+ 
   
 
 }
