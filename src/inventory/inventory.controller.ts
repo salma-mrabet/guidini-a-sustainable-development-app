@@ -11,7 +11,7 @@ import {
   } from '@nestjs/common';
 
 
-import { ApiTags } from '@nestjs/swagger';
+import { ApiAcceptedResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { InventoryService } from './inventory.service';
 import { Inventory } from './inventory.schema';
 import { CreateInventoryDto } from './dto/create.inventory.dto';
@@ -40,6 +40,8 @@ export class InventoryController {
     return this.inventoryService.create(inventory,id);
   }
 
+  
+
 
   @Get(':id')
   async getInventory(
@@ -47,6 +49,17 @@ export class InventoryController {
     id: string,
   ): Promise<Inventory> {
     return this.inventoryService.findById(id);
+  }
+
+
+  @ApiOperation({ summary: 'Get inventories by user ID' })
+  @Get('findByUser/:id')
+  async getInventoryByUser(
+    @Param('id')
+    id: string,
+  ): Promise<Inventory[]> {
+    console.log(id);
+    return this.inventoryService.findAllByUser(id);
   }
 
   @Put(':id')

@@ -17,9 +17,11 @@ export class InventoryService {
         return inventories;
       }
 
-      async findAllByUser(): Promise<Inventory[]> {
-        const inventories = await this.inventoryModel.find();
-        return inventories;
+
+      async findAllByUser(userId: string): Promise<Inventory[]> {
+        console.log('Finding inventories for userId:', userId);
+        return  this.inventoryModel.find({ user: userId });
+       
       }
     
       async create(inventory: Inventory, id:string): Promise<Inventory> {
