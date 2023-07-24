@@ -51,7 +51,7 @@ export class Ad {
     description: 'begin date',
   })
 //   @IsDate()
-  begin_date: Date;
+  begin_date: string;
 
 
   @Prop()
@@ -59,7 +59,7 @@ export class Ad {
     description: 'end date',
   })
 //   @IsDate()
-  end_date: Date;
+  end_date: string;
 
 
 

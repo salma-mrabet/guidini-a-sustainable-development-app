@@ -49,12 +49,12 @@ export class CreateAdDto {
   })
 
   @IsOptional()
-  begin_date: Date;
+  begin_date: string;
 
   @ApiProperty({
     description: 'end date',
   })
  
   @IsOptional()
-  end_date: Date;
+  end_date: string;
 }
