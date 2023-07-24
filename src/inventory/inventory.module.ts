@@ -10,6 +10,7 @@ import { InventorySchema } from './inventory.schema';
     MongooseModule.forFeature([{ name: 'Inventory', schema: InventorySchema }]),
   ],
   controllers: [InventoryController],
-  providers: [InventoryService]
+  providers: [InventoryService],
+  exports: [InventoryService]
 })
 export class InventoryModule {}

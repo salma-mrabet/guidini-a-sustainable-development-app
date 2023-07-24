@@ -37,7 +37,7 @@ export class UpdateInventoryDto {
     description: 'quantity recommended for the user ',
   })
   @IsOptional()
-  quantityRecommended: string;
+  quantityRecommended: number;
 
 
 

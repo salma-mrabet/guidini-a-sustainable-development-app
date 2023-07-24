@@ -36,7 +36,7 @@ export class Inventory {
   user: string ;
 
   @Prop()
-  quantityRecommended: string;
+  quantityRecommended: number;
 
   
 

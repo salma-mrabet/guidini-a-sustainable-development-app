@@ -40,7 +40,6 @@ export class AdController {
     }
   
     @Get(':id')
-  
     async getProduct(
       @Param('id')
       id: string,

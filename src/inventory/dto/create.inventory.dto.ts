@@ -43,7 +43,7 @@ export class CreateInventoryDto {
     description: 'quantity recommended for the user ',
   })
   @IsOptional()
-  quantityRecommended: string;
+  quantityRecommended: number;
 
 
 
