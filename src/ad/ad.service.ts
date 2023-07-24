@@ -21,11 +21,11 @@ export class AdService {
         return ads;
       }
     
-      async create(ad: Ad, id: string): Promise<Ad> {
-        const product = await this.productModel.findById(id)
-        ad.productId = id ;
-        ad.productname= product.productname;
-        ad.brand = product.brand;
+      async create(ad: Ad): Promise<Ad> {
+        // const product = await this.productModel.findById(id)
+        // ad.productId = id ;
+        // ad.productname= product.productname;
+        // ad.brand = product.brand;
         const res = await this.adModel.create(ad);
         return res;
       }

@@ -26,17 +26,16 @@ export class AdController {
       return this.adService.findAll();
     }
   
-    @Post(':id')
+    @Post()
    
     async createAd(
-      @Param('id')
-      id: string,
+  
       @Body()
       ad: CreateAdDto,
   
     ): Promise<Ad> {
     
-      return this.adService.create(ad,id);
+      return this.adService.create(ad);
     }
   
     @Get(':id')
