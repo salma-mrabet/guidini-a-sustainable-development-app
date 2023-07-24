@@ -65,4 +65,14 @@ export class ProductController {
   ): Promise<Product> {
     return this.productService.deleteById(id, product);
   }
+
+  @Get(':id/recommendations')
+  async getRecommendations(
+    @Param('id')
+    id: string,
+    
+  ):    Promise<number>{
+    return this.productService.getRecommendedQuantity(id);
+  }
+  
 }

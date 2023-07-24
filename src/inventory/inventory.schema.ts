@@ -15,28 +15,31 @@ export class Inventory {
   @Prop({
     required: true,
   })
+
+
   @ApiProperty({
     description: 'product name',
     required: true,
   })
   productname: string;
 
+
   @Prop()
   brand: string;
+
 
   @Prop()
   quantity: string;
 
 
-  @Prop({ type: mongoose.Schema.Types.ObjectId, ref:'User'})
-  user: User ;
+  @Prop()
+  user: string ;
 
-
-
-//   @Prop()
-//   recommendation:string;
+  @Prop()
+  quantityRecommended: number;
 
   
+
 }
 
 export const InventorySchema = SchemaFactory.createForClass(Inventory);

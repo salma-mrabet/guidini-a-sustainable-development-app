@@ -6,13 +6,14 @@ import {
   IsOptional,
   IsEmpty,
 } from 'class-validator';
+import { User } from 'src/auth/schemas/user.schema';
 
 
-export class CreateProductDto {
+export class UpdateInventoryDto {
     
 
 
-  @IsNotEmpty()
+ 
   @ApiProperty({
     description: 'product name',
     required: true,
@@ -30,24 +31,14 @@ export class CreateProductDto {
     description: 'Quantity in stock',
   })
   @IsString()
-  @IsOptional()
-  quantityInStock: string;
-
+  quantity: string;
 
   @ApiProperty({
-    description: 'quantity Recommended',
+    description: 'quantity recommended for the user ',
   })
-  @IsString()
   @IsOptional()
-  quantityRecommended: string;
+  quantityRecommended: number;
 
-  @ApiProperty({
-    description: 'Category',
-    example: 'food and groceries'
-  })
-  @IsString()
-  @IsOptional()
-  category: string;
 
 
 

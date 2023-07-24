@@ -6,9 +6,11 @@ import {
   IsOptional,
   IsEmpty,
 } from 'class-validator';
+import mongoose from 'mongoose';
+import { User } from 'src/auth/schemas/user.schema';
 
 
-export class CreateProductDto {
+export class CreateInventoryDto {
     
 
 
@@ -30,25 +32,18 @@ export class CreateProductDto {
     description: 'Quantity in stock',
   })
   @IsString()
-  @IsOptional()
-  quantityInStock: string;
-
+  quantity: string;
 
   @ApiProperty({
-    description: 'quantity Recommended',
+    description: 'id of the current user ',
   })
-  @IsString()
-  @IsOptional()
-  quantityRecommended: string;
+  user: string ; 
 
   @ApiProperty({
-    description: 'Category',
-    example: 'food and groceries'
+    description: 'quantity recommended for the user ',
   })
-  @IsString()
   @IsOptional()
-  category: string;
-
+  quantityRecommended: number;
 
 
 
