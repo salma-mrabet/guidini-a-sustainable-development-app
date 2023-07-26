@@ -6,9 +6,11 @@ import { SuperMarketSchema } from 'src/authmarket/schemas/supermarket.schema';
 
 @Module({
   imports: [
-    MongooseModule.forFeature([{ name: 'SuperMarket', schema: SuperMarketSchema }]),
+    MongooseModule.forFeature([
+      { name: 'SuperMarket', schema: SuperMarketSchema },
+    ]),
   ],
   controllers: [SupermarketController],
-  providers: [SupermarketService]
+  providers: [SupermarketService],
 })
 export class SupermarketModule {}

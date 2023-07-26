@@ -18,7 +18,9 @@ import { SuperMarketSchema } from './schemas/supermarket.schema';
         };
       },
     }),
-    MongooseModule.forFeature([{ name: 'SuperMarket', schema: SuperMarketSchema }]),
+    MongooseModule.forFeature([
+      { name: 'SuperMarket', schema: SuperMarketSchema },
+    ]),
   ],
   controllers: [AuthMarketController],
   providers: [AuthMarketService],

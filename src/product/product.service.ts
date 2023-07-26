@@ -43,14 +43,10 @@ export class ProductService {
     return await this.productModel.findByIdAndDelete(id, product);
   }
 
- async getRecommendedQuantity(id: string): Promise<number> {
-  const product = await this.productModel.findById(id);
-  const productName= product.productname;
-  const quantity = await this.inventoryModel.getProductCount(productName)
-  return quantity;
-
-
-
- }
-  
+  async getRecommendedQuantity(id: string): Promise<number> {
+    const product = await this.productModel.findById(id);
+    const productName = product.productname;
+    const quantity = await this.inventoryModel.getProductCount(productName);
+    return quantity;
+  }
 }

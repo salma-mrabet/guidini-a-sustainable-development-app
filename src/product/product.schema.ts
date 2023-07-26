@@ -2,12 +2,10 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { ApiProperty } from '@nestjs/swagger';
 import mongoose from 'mongoose';
 
-
 @Schema({
   timestamps: true,
 })
 export class Product {
-
   @Prop({
     required: true,
   })
@@ -31,8 +29,6 @@ export class Product {
 
   // @Prop({ type: mongoose.Schema.Types.ObjectId, ref:'User'})
   // user: User ;
-
-  
 }
 
 export const ProductSchema = SchemaFactory.createForClass(Product);

@@ -27,7 +27,6 @@ import { SupermarketModule } from './supermarket/supermarket.module';
     InventoryModule,
     UserModule,
     SupermarketModule,
-
   ],
   controllers: [AppController],
   providers: [AppService],

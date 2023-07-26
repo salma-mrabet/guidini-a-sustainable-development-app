@@ -1,14 +1,13 @@
-
 import {
-    Body,
-    Controller,
-    Get,
-    Post,
-    Param,
-    Put,
-    Delete,
-    UseGuards,
-  } from '@nestjs/common';
+  Body,
+  Controller,
+  Get,
+  Post,
+  Param,
+  Put,
+  Delete,
+  UseGuards,
+} from '@nestjs/common';
 
 import { ProductService } from './product.service';
 import { Product } from './product.schema';
@@ -16,11 +15,10 @@ import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
 import { ApiTags } from '@nestjs/swagger';
 
-
 @Controller('product')
 @ApiTags('product')
 export class ProductController {
-    constructor(private productService: ProductService) {}
+  constructor(private productService: ProductService) {}
 
   @Get()
   async getAllProducts(): Promise<Product[]> {
@@ -28,18 +26,14 @@ export class ProductController {
   }
 
   @Post()
- 
   async createProduct(
     @Body()
     product: CreateProductDto,
-
   ): Promise<Product> {
-  
     return this.productService.create(product);
   }
 
   @Get(':id')
-
   async getProduct(
     @Param('id')
     id: string,
@@ -70,9 +64,7 @@ export class ProductController {
   async getRecommendations(
     @Param('id')
     id: string,
-    
-  ):    Promise<number>{
+  ): Promise<number> {
     return this.productService.getRecommendedQuantity(id);
   }
-  
 }
